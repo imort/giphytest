@@ -5,16 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_trending.*
+import ru.imort.giphy.AppComponent
 import ru.imort.giphy.R
 
 class TrendingFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = TrendingFragment()
-    }
 
     private lateinit var viewModel: TrendingViewModel
 
@@ -28,8 +27,8 @@ class TrendingFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(TrendingViewModel::class.java)
-        // TODO: Use the ViewModel
+        viewModel = ViewModelProviders.of(this, VmFactory)
+            .get(TrendingViewModel::class.java)
 
         button.setOnClickListener {
             findNavController().navigate(
@@ -38,4 +37,11 @@ class TrendingFragment : Fragment() {
         }
     }
 
+    object VmFactory : ViewModelProvider.Factory {
+        @Suppress("UNCHECKED_CAST")
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T =
+            if (modelClass.isAssignableFrom(TrendingViewModel::class.java))
+                TrendingViewModel(AppComponent.instance.api) as T
+            else throw IllegalArgumentException()
+    }
 }
