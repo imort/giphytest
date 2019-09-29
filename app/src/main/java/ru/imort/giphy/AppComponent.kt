@@ -11,6 +11,7 @@ import ru.imort.giphy.api.GiphyApi
 
 /**
  * Service locator based on kotlin props
+ * https://blog.kotlin-academy.com/dependency-injection-the-pattern-without-the-framework-33cfa9d5f312
  * Created on 2019-09-28.
  */
 interface AppComponent {
@@ -38,5 +39,7 @@ object AppModule : AppComponent {
         .baseUrl("https://api.giphy.com/")
         .build()
 
-    override val api: GiphyApi = retrofit.create(GiphyApi::class.java)
+    override val api: GiphyApi by lazy {
+        retrofit.create(GiphyApi::class.java)
+    }
 }

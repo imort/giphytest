@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">giphy-test</string>
+
     <string name="trending_title">Trending</string>
     <string name="detail_title">Unknown</string>
+
+    <string name="reload">Reload</string>
+
+    <string name="error_default">Unknown error</string>
+    <string name="error_no_internet">No network</string>
 </resources>
