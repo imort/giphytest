@@ -2,6 +2,7 @@ package ru.imort.giphy.api
 
 import io.reactivex.Single
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 /**
@@ -16,4 +17,10 @@ interface GiphyApi {
         @Query("limit") limit: Int = 20,
         @Query("offset") offset: Int = 0
     ): Single<TrendingResponse>
+
+    @GET("v1/gifs/{id}")
+    fun getById(
+        @Path("id") id: String,
+        @Query("api_key") key: String = "CHctsKmVO116OvRpIXvYpUpfyUGmLliU"
+    ): Single<GetByIdResponse>
 }

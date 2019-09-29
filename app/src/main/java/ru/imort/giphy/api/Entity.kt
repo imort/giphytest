@@ -38,3 +38,9 @@ data class TrendingResponse(
     val pagination: Pagination,
     val meta: Meta
 )
+
+@Serializable
+data class GetByIdResponse(
+    val data: Image,
+    val meta: Meta
+)
