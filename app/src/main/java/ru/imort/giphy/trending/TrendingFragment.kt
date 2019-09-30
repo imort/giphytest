@@ -24,7 +24,6 @@ import ru.imort.giphy.R
 import ru.imort.giphy.asHumanText
 import ru.imort.giphy.trending.recycler.GiphyObjectAdapter
 import timber.log.Timber
-import java.util.concurrent.TimeUnit
 
 class TrendingFragment : Fragment() {
 
@@ -52,7 +51,6 @@ class TrendingFragment : Fragment() {
                 TrendingViewAction.Refresh
             }
         val loadNext = recycler.scrollEvents()
-            .debounce(100, TimeUnit.MILLISECONDS)
             .filter {
                 val lm = it.view.layoutManager as LinearLayoutManager
                 val totalItemCount = lm.itemCount

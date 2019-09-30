@@ -19,8 +19,12 @@
         tools:layout="@layout/fragment_detail">
         <argument
             android:name="id"
-            app:argType="string"
-            android:defaultValue="detailId" />
+            app:argType="string" />
+        <argument
+            android:name="giphy"
+            app:argType="ru.imort.giphy.api.GiphyObject"
+            app:nullable="true"
+            android:defaultValue="@null" />
         <deepLink
             android:id="@+id/deepLink"
             app:uri="giphy.com/gifs/{id}" />

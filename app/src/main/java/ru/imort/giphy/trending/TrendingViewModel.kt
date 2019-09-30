@@ -24,7 +24,7 @@ class TrendingViewModel(
 
     init {
         disposables += actionSubject
-            .flatMap {
+            .switchMap {
                 when (it) {
                     is TrendingViewAction.Load -> load()
                     is TrendingViewAction.LoadForward -> next(it.offset)

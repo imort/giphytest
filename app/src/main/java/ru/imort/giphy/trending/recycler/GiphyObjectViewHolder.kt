@@ -18,7 +18,8 @@ class GiphyObjectViewHolder(override val containerView: View) :
 
     fun bind(data: GiphyObject) {
         itemView.setOnClickListener {
-            val action = TrendingFragmentDirections.actionTrendingFragmentToDetailFragment(data.id)
+            val action = TrendingFragmentDirections.actionTrendingFragmentToDetailFragment(
+                data.id, data)
             findNavController(it).navigate(action)
         }
         image.setImageURI(data.images.fixed_height_small_still.url)

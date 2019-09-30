@@ -1,6 +1,8 @@
 package ru.imort.giphy.api
 
+import android.os.Parcelable
 import androidx.recyclerview.widget.DiffUtil
+import kotlinx.android.parcel.Parcelize
 import kotlinx.serialization.Serializable
 
 /**
@@ -9,13 +11,14 @@ import kotlinx.serialization.Serializable
  * @author yaroslav.nastyuk
  */
 @Serializable
+@Parcelize
 data class GiphyObject(
     val id: String,
     val type: String,
     val title: String,
     val images: GiphyImages,
     val user: GiphyUser? = null
-) {
+) : Parcelable {
     object DiffItemCallback : DiffUtil.ItemCallback<GiphyObject>() {
         override fun areItemsTheSame(oldItem: GiphyObject, newItem: GiphyObject): Boolean {
             return oldItem.id == newItem.id
@@ -28,20 +31,24 @@ data class GiphyObject(
 }
 
 @Serializable
+@Parcelize
 data class GiphyImages(
     val fixed_height_small_still: GiphyImage,
     val fixed_height: GiphyImage
-)
+) : Parcelable
 
 @Serializable
+@Parcelize
 data class GiphyImage(
     val url: String
-)
+) : Parcelable
 
 @Serializable
+@Parcelize
 data class GiphyUser(
-    val username: String
-)
+    val username: String,
+    val profile_url: String
+) : Parcelable
 
 @Serializable
 data class GiphyPagination(
