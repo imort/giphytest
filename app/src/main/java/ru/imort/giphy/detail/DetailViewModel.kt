@@ -38,6 +38,11 @@ class DetailViewModel(
             })
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        disposables.dispose()
+    }
+
     fun dispatch(action: DetailViewAction) {
         actionSubject.onNext(action)
     }
